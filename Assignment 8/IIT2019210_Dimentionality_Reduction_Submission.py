@@ -3,7 +3,7 @@
 
 # # Aditya Aggarwal (IIT2019210) Submission Machine Learning Assignment on Dimensionality Reduction
 
-# In[1]:
+# In[ ]:
 
 
 #Importing the libraries used in this assignment
@@ -41,7 +41,7 @@ from sklearn import metrics
 
 # ## Part 1 or Method 1
 
-# In[2]:
+# In[ ]:
 
 
 # As asked in the question in method 1, I am loading the iris dataset into a variable called as iris_dataset
@@ -56,7 +56,7 @@ data
 
 # Now in the above dataframe we can observe that there are 5 columns - sepal length, sepal width, petal length, petal width and target (First 4 columns in centimeter). The last column is the value of flower.
 
-# In[3]:
+# In[ ]:
 
 
 # This unique method will print all the unique values in the column named as target in dataframe data
@@ -65,7 +65,7 @@ data["target"].unique()
 
 # Now, we can see that there are only 3 unique values which corresponds to 3 types of flowers namely, (setosa, versicolor and verginica). This it means the target column as a limited set of values(3) and it makes it a classfication problem.
 
-# In[4]:
+# In[ ]:
 
 
 # Now in method 1 we are asked to take only 2 feature columns namely, sepal width and petal length. So, I am storing them into X
@@ -81,21 +81,21 @@ y=data["target"]
 # Before moving to projecting the data into graph, we must see the relationship between the two feature columns given to us. 
 # This can be done by plotting various kind of graphs in between sepal width and petal length
 
-# In[5]:
+# In[ ]:
 
 
 # 1. I am doing this by using line plot
 sns.lineplot(data=data, x="sepal width (cm)", y="petal length (cm)")
 
 
-# In[6]:
+# In[ ]:
 
 
 # 2. I am doing this by using hist plot
 sns.histplot(data=data, x="sepal width (cm)", y="petal length (cm)")
 
 
-# In[7]:
+# In[ ]:
 
 
 # 3. I am doing this by using box plot
@@ -104,14 +104,14 @@ sns.boxplot(data=data, x="sepal width (cm)", y="petal length (cm)")
 
 # From the box graph I can observe that there are some outliers in the data
 
-# In[8]:
+# In[ ]:
 
 
 # 4. I am doing this by using factor plot
 sns.factorplot(data=data, x="sepal width (cm)", y="petal length (cm)")
 
 
-# In[9]:
+# In[ ]:
 
 
 # 5. I am doing this by using scatter matrix
@@ -122,7 +122,7 @@ data.plot.scatter(x="sepal width (cm)",y="petal length (cm)")
 
 # Now, I will be projecting the labelled data on a 2D graph
 
-# In[10]:
+# In[ ]:
 
 
 # This part can be done easily by plotting all the 150 points in the dataset
@@ -171,7 +171,7 @@ plt.show()
 
 # Now, we will classify the data by drawing linear boundaries
 
-# In[11]:
+# In[ ]:
 
 
 # We have stored the dataframe in the X and y but for the model we need a numpy array.
@@ -186,7 +186,7 @@ y=iris_dataset.target
 svc = svm.SVC(kernel='linear', C=1.0).fit(X, y)
 
 
-# In[12]:
+# In[ ]:
 
 
 # This is a very famous 1 line method to find the minimum and maximum value from a numpy array
@@ -212,7 +212,7 @@ plt.contourf(a, b, svc.predict(np.c_[a.ravel(), b.ravel()]).reshape(a.shape), cm
 
 # The 3 different colors tell the expected area of any new point. Like if sepal width is 1.5 and petal length is 7, the expected flower will fall in class 2 (purple color according to the above graph and green color according to the 2D graph)
 
-# In[13]:
+# In[ ]:
 
 
 # Plot also the training points as done 2 cells above
@@ -233,7 +233,7 @@ plt.ylim(b.min(), b.max())
 plt.show()
 
 
-# In[14]:
+# In[ ]:
 
 
 # Now we will plotting both the graphs on a same graph
@@ -266,7 +266,7 @@ plt.show()
 
 # ## Part 2 or Method 2
 
-# In[15]:
+# In[ ]:
 
 
 # As asked in the question in method 1, I am loading the iris dataset into a variable called as iris_dataset
@@ -282,7 +282,7 @@ data
 # In method 1, we were asked to solve with 2 feature columns but in this method we have to take all the features i.e. 4 features are there.
 # 
 
-# In[16]:
+# In[ ]:
 
 
 # Now in method 2 we are asked to all the feature columns. So, I am storing them into X
@@ -294,7 +294,7 @@ y=data["target"]
 
 # We are not asked to take a particular ratio of training and testing data so I am taking it as 0.66 i.e. 100 data to train and 50 to train
 
-# In[17]:
+# In[ ]:
 
 
 # The train_test_split will help us to split the data uniformly. 
@@ -305,7 +305,7 @@ X_train, X_test, y_train, y_test=train_test_split(X, y, test_size=0.33, random_s
 
 # We are asked to implement the MDA on iris dataset. Now, we do not have a direct model for that. Rather, when we apply LDA (Linear Discriminant Analysis) on multiple columns, it acts as MDA (Multiple Discriminant Analysis).
 
-# In[18]:
+# In[ ]:
 
 
 # We have already imported the model above, so I am just creating the lda model
@@ -315,7 +315,7 @@ lda=LDA()
 lda.fit(X_train, y_train)
 
 
-# In[19]:
+# In[ ]:
 
 
 # Printing the actual Y values and prediceted Y values by the LDA model
@@ -325,7 +325,7 @@ print("Predicted test output values are :", list(lda.predict(X_test)))
 
 # We can see almost all the classes predicted by the LDA model are in sync with (similar) with the actual class.
 
-# In[20]:
+# In[ ]:
 
 
 # Now, I am predicting the accuracy score of the model.
@@ -336,7 +336,7 @@ accuracy_score(y_test, lda.predict(X_test))
 
 # Now, we have to plot the graph as a 2D plot with is very difficult since the data has 4 features so we need 4 dimentions to plot but are asked for only 2. So, there are 2 ways to solve this issue. First, is that we plot the graph between every 2 features and secondly, is that we can reduce the dimentions to 2 using LDA and then plot the graph.
 
-# In[21]:
+# In[ ]:
 
 
 # As mentioned above, this is the first way in which I am plotting 2D grpah between every 2 features.
@@ -396,7 +396,7 @@ graph(6,"petal length (cm)","petal width (cm)")
 plt.show()
 
 
-# In[22]:
+# In[ ]:
 
 
 # As mentioned above, this is the second way in which I will reduce the dimentions to 2 and then plot the graph.
@@ -419,7 +419,7 @@ sns.scatterplot(x=reduced_dimentions[:, 0], y=reduced_dimentions[:, 1], s=90, hu
 # I have already plotted the graph of both them in their sections. But to compare them, I will be plotting them again.
 # 
 
-# In[23]:
+# In[ ]:
 
 
 #METHOD-1
@@ -461,7 +461,7 @@ plt.ylim(b.min(), b.max())
 plt.show()
 
 
-# In[24]:
+# In[ ]:
 
 
 #METHOD-2
@@ -548,7 +548,7 @@ sns.scatterplot(x=reduced_dimentions[:, 0], y=reduced_dimentions[:, 1], s=90, hu
 
 # We have to take 100 data points belonging to the 3 given classes.
 
-# In[25]:
+# In[ ]:
 
 
 # I am loading the mnist fashion data using fetch_openml and 'mnist_784' dataset
@@ -556,7 +556,7 @@ sns.scatterplot(x=reduced_dimentions[:, 0], y=reduced_dimentions[:, 1], s=90, hu
 XALL, yALL=fetch_openml('mnist_784', version=1, return_X_y=True)
 
 
-# In[26]:
+# In[ ]:
 
 
 #First of all we will see how many unique values are there in yALL column
@@ -571,7 +571,17 @@ print("Unique Values are :", uniques)
 
 # Now, it can be easily found that class 2 represents the pullover, class 7 represents the sneaker and class 9 represents the ankle boot.
 
-# In[27]:
+# In[ ]:
+
+
+# Printing the shapes of X and y
+print(XALL.shape)
+print(yALL.shape)
+
+
+# We have to remove the 7 classes which were not required. Also make total 300 data rows in the X and y. We only require 300 data rows.
+
+# In[ ]:
 
 
 ''' 
@@ -584,22 +594,45 @@ class 9 - Ankle Boot
 X=[]
 y=[]
 
+count2=0
+count7=0
+count9=0
+
 # Now we will be iterating into yALL
 for i in range(len(yALL)):
   # If the class is one of the three required then go inside if
   if yALL[i]=='2' or yALL[i]=='7' or yALL[i]=='9':
-    #Firstly append the class into list y
-    y.append(yALL[i])
 
-    #Secondly append the features into list X
-    X.append(XALL[i])
+    if yALL[i]=='2' and count2<100:
+      count2+=1
+      #Firstly append the class into list y
+      y.append(yALL[i])
+
+      #Secondly append the features into list X
+      X.append(XALL[i])
+    elif yALL[i]=='7' and count7<100:
+      count7+=1
+      #Firstly append the class into list y
+      y.append(yALL[i])
+
+      #Secondly append the features into list X
+      X.append(XALL[i])
+    elif yALL[i]=='9' and count9<100:
+      count9+=1
+      #Firstly append the class into list y
+      y.append(yALL[i])
+
+      #Secondly append the features into list X
+      X.append(XALL[i])
+
+    
 
 # Converting the lists into numpy arrays
 X=np.array(X)
 y=np.array(y)
 
 
-# In[28]:
+# In[ ]:
 
 
 # Printing the shapes of X and y
@@ -607,38 +640,13 @@ print(X.shape)
 print(y.shape)
 
 
-# We have now removed the 7 classes which were not required. But still there are over 20,000 data rows in the X and y. We only require 100 data rows. The idea is to take see first 100 classes.
+# Now, there are 300 data rows and 100 data rows with class 2, 7, and 9
 
-# In[29]:
-
-
-# Printing the first 100 classes
-y[:100]
-
-
-# I can see that classes 2, 7 and 9 are evenly distributed so, instead of taking random 100 values, I am taking first 100 data rows.
-
-# In[30]:
-
-
-#Restricting the X and y to take only first 100 data rows.
-X=X[:100]
-y=y[:100]
-
-
-# In[31]:
-
-
-# Again checking for the shapes of X and y
-print(X.shape)
-print(y.shape)
-
-
-# Since, the data has 100 rows and there are only 3 required(asked) classes. So now, we have perfect data to apply model.
+# Since, the data has 300 rows and there are only 3 required(asked) classes. So now, we have perfect data to apply model.
 
 # ### Principal Component Analysis(PCA)
 
-# In[32]:
+# In[ ]:
 
 
 # Creating PCA model and since we need to plot 2D graph so I am taking n_components as 2 and random_state as 30
@@ -651,7 +659,7 @@ reducedDim=pcaModel.fit_transform(X)
 
 # reducedDim contains the new values of features after reducing them from 750+ features into 2
 
-# In[33]:
+# In[ ]:
 
 
 #Declaring the figure size for PCA
@@ -663,7 +671,7 @@ sns.scatterplot(x=reducedDim[:, 0], y=reducedDim[:, 1], s=80, hue=y)
 
 # ### T-Distributed Stochastic Neighbor Embedding(TSNE)
 
-# In[34]:
+# In[ ]:
 
 
 # Creating TSNE model and since we need to plot 2D graph so I am taking n_components as 2 and random_state as 30
@@ -676,7 +684,7 @@ reducedDim=tsneModel.fit_transform(X)
 
 # reducedDim contains the new values of features after reducing them from 750+ features into 2
 
-# In[35]:
+# In[ ]:
 
 
 #Declaring the figure size for TSNE
@@ -688,7 +696,7 @@ sns.scatterplot(x=reducedDim[:, 0], y=reducedDim[:, 1], s=80, hue=y)
 
 # ### Linear Discriminant Analysis(LDA)
 
-# In[36]:
+# In[ ]:
 
 
 # Creating LDA model and since we need to plot 2D graph so I am taking n_components as 2
@@ -701,7 +709,7 @@ reducedDim=lda.fit_transform(X, y)
 
 # reducedDim contains the new values of features after reducing them from 750+ features into 2
 
-# In[37]:
+# In[ ]:
 
 
 #Declaring the figure size for LDA
@@ -717,7 +725,7 @@ sns.scatterplot(x=reducedDim[:, 0], y=reducedDim[:, 1], s=80, hue=y)
 
 # In this part, we have to predict and calculate the accuracy by dimentionality reduction. There are 2 things needed to be taken care of - first that train and test size will be 50-50 as given in the question and second that these three models will reduce dimentions so I will be using logistic classifier to predict the outcomes.
 
-# In[38]:
+# In[ ]:
 
 
 # Printing the shapes of X and y by using the X and Y as in part 1
@@ -725,7 +733,7 @@ print(X.shape)
 print(y.shape)
 
 
-# In[39]:
+# In[ ]:
 
 
 # For this part we need to divide the data into training and testing data as asked in the question and test_size will be 0.5
@@ -736,7 +744,7 @@ X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.5, random_
 
 # ### Principal Component Analysis(PCA)
 
-# In[40]:
+# In[ ]:
 
 
 # Creating PCA model and since we need to plot 2D graph so I am taking n_components as 2 and random_state as 30
@@ -746,7 +754,7 @@ pcaModel=PCA(n_components=2, random_state=30)
 reducedDim=pcaModel.fit_transform(X_train)
 
 
-# In[41]:
+# In[ ]:
 
 
 #Declaring the figure size for PCA
@@ -756,7 +764,7 @@ plt.figure(figsize=(20,4))
 sns.scatterplot(x=reducedDim[:, 0], y=reducedDim[:, 1], s=80, hue=y_train)
 
 
-# In[42]:
+# In[ ]:
 
 
 # Creating the logistic classifier
@@ -773,17 +781,19 @@ print("Actual test output values are :", list(y_test))
 print("Predicted test output values are :", list(predicted_values))
 
 
-# In[43]:
+# In[ ]:
 
 
 print('Accuracy of logistic regression classifier after dimentiionality reduction by PCA :', logisitcModel.score(pcaModel.fit_transform(X_test), y_test))
 
 
-# So, we are getting 64% accuracy by first reducing dimentions using PCA and then appying logistic regression classifier which is a decent accuracy.
+# So, we are getting nearly 70% accuracy by first reducing dimentions using PCA and then appying logistic regression classifier which is a decent accuracy.
+
+# ### The accuracy can change on every run because I am considering random 50% data for training.
 
 # ### T-Distributed Stochastic Neighbor Embedding(TSNE)
 
-# In[44]:
+# In[ ]:
 
 
 # Creating TSNE model and since we need to plot 2D graph so I am taking n_components as 2 and random_state as 30
@@ -793,7 +803,7 @@ tsneModel=TSNE(n_components=2, random_state=2)
 reducedDim=tsneModel.fit_transform(X_train)
 
 
-# In[45]:
+# In[ ]:
 
 
 #Declaring the figure size for TSNE
@@ -803,7 +813,7 @@ plt.figure(figsize=(20,4))
 sns.scatterplot(x=reducedDim[:, 0], y=reducedDim[:, 1], s=80, hue=y_train)
 
 
-# In[46]:
+# In[ ]:
 
 
 # Creating the logistic classifier
@@ -820,19 +830,19 @@ print("Actual test output values are :", list(y_test))
 print("Predicted test output values are :", list(predicted_values))
 
 
-# In[47]:
+# In[ ]:
 
 
 print('Accuracy of logistic regression classifier after dimentiionality reduction by TSNE :', logisitcModel.score(tsneModel.fit_transform(X_test), y_test))
 
 
-# So, we are getting 36% accuracy by first reducing dimentions using TSNE and then appying logistic regression classifier which is not a good accuracy as compared with that of case in PCA.
+# So, we are getting nearly 42% accuracy by first reducing dimentions using TSNE and then appying logistic regression classifier which is not a good accuracy as compared with that of case in PCA.
 # 
 # 
 
 # ### Linear Discriminant Analysis(LDA)
 
-# In[48]:
+# In[ ]:
 
 
 # Creating LDA model and since we need to plot 2D graph so I am taking n_components as 2
@@ -842,7 +852,7 @@ LDAModel=LDA(n_components=2)
 reducedDim=lda.fit_transform(X_train, y_train)
 
 
-# In[49]:
+# In[ ]:
 
 
 #Declaring the figure size for LDA
@@ -852,7 +862,7 @@ plt.figure(figsize=(20,4))
 sns.scatterplot(x=reducedDim[:, 0], y=reducedDim[:, 1], s=80, hue=y_train)
 
 
-# In[50]:
+# In[ ]:
 
 
 # Creating the logistic classifier
@@ -869,27 +879,29 @@ print("Actual test output values are :", list(y_test))
 print("Predicted test output values are :", list(predicted_values))
 
 
-# In[51]:
+# In[ ]:
 
 
 print('Accuracy of logistic regression classifier after dimentiionality reduction by LDA :', logisitcModel.score(LDAModel.fit_transform(X_test, y_test), y_test))
 
 
-# So, we are getting 86% accuracy by first reducing dimentions using LDA and then appying logistic regression classifier which is the highest accuracy that I got and this means LDA is more good than PCA dimentionality reduction.
+# So, we are getting nearly 91% accuracy by first reducing dimentions using LDA and then appying logistic regression classifier which is the highest accuracy that I got and this means LDA is more good than PCA dimentionality reduction.
 
 # ### Comparison between PCA, TSNE and LDA
 # #### Basically these three are used to reduce the dimentions. The dataset given to us has more than 750 features and I reduce these 750+ features into 2 features by using these three models one by one and then used a Logistic Regression Classfier to predict the accuracy of the model. The comparison in terms of accuracy I got is : accuracy(LDA)>accuracy(PCA)>>accuracy(TSNE).
 # 
-# #### Accuracy with LDA = 86%
-# #### Accuracy with PCA = 64%
-# #### Accuracy with TSNE = 36%
+# #### Accuracy with LDA = 91%
+# #### Accuracy with PCA = 70%
+# #### Accuracy with TSNE = 42%
 # #### So, I will be concluding that TSNE has shown bad performance and LDA and PCA both have shown a good performance and comparing them LDA is giving more accuracy then PCA.
+# 
+# #### Note: These accuracies can change when this code will run again. When I ran them I got these accuracies. The reason that this accuracy can change is that I am taking random 150 data out of 300 data.
 
 # ## Part 3
 
-# Some of the observations were made in part 2 where I concluded that LDA is more good than PCA and PCA & LDA are more good than TSNE. But this conclusion was done on the basis of accuracy score. We can see that there is not high difference in accuracy scores of LDA and PCA so, we need a other reason on which we can compare them. But, there is a tremendous amount of difference of accuracies in TSNE and (LDA or PCA). It's nearly 2 times the accuracy of TSNE. So, I can directly conclude that I will not be taking TSNE to reduce dimentions for this question. We still need to compare between PCA and LDA. I will compare them on the basis of graph they have after dimentionality reduction.
+# Some of the observations were made in part 2 where I concluded that LDA is more good than PCA and PCA & LDA are more good than TSNE. But this conclusion was done on the basis of accuracy score. We can see that there is small(15%-20%) difference in accuracy scores of LDA and PCA so, we need a other reason on which we can compare them. But, there is a tremendous amount of difference of accuracies in TSNE and LDA. It's nearly 2 times the accuracy of TSNE. So, I can directly conclude that I will not be taking TSNE to reduce dimentions for this question. We still need to compare between PCA and LDA. I will compare them on the basis of graph they have after dimentionality reduction.
 
-# In[52]:
+# In[ ]:
 
 
 # Creating PCA model and since we need to plot 2D graph so I am taking n_components as 2 and random_state as 30
@@ -906,7 +918,7 @@ plt.figure(figsize=(18,4))
 sns.scatterplot(x=reducedDim[:, 0], y=reducedDim[:, 1], s=80, hue=y)
 
 
-# In[53]:
+# In[ ]:
 
 
 # Creating LDA model and since we need to plot 2D graph so I am taking n_components as 2
